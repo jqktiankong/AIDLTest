@@ -17,7 +17,14 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".UserService"></service>
+        <service
+            android:name=".UserService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.cvnavi.aidltest.userservice" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

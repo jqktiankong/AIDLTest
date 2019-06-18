@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         intent = new Intent();
         intent.setClass(this, UserService.class);
         bindService(intent, mConnection, BIND_AUTO_CREATE);
+
+        startService(intent);
     }
 
     private ServiceConnection mConnection = new ServiceConnection() {

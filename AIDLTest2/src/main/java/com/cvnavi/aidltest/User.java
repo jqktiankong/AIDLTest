@@ -1,4 +1,4 @@
-package com.cvnavi.aidltest.bean;
+package com.cvnavi.aidltest;
 
 import android.os.Parcel;
 import android.os.Parcelable;
