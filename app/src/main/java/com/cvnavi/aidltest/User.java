@@ -4,10 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public final class User implements Parcelable {
-    public int left;
-    public int top;
-    public int right;
-    public int bottom;
+    public String name;
+    public int age;
 
     @Override
     public int describeContents() {
@@ -16,10 +14,8 @@ public final class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(left);
-        parcel.writeInt(top);
-        parcel.writeInt(right);
-        parcel.writeInt(bottom);
+        parcel.writeString(name);
+        parcel.writeInt(age);
     }
 
     public static final Parcelable.Creator<User> CREATOR = new
@@ -33,11 +29,13 @@ public final class User implements Parcelable {
                 }
             };
 
-    public User(int left, int top, int right, int bottom) {
-        this.left = left;
-        this.top = top;
-        this.right = right;
-        this.bottom = bottom;
+    public User() {
+
+    }
+
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
     }
 
     private User(Parcel in) {
@@ -45,19 +43,31 @@ public final class User implements Parcelable {
     }
 
     public void readFromParcel(Parcel in) {
-        left = in.readInt();
-        top = in.readInt();
-        right = in.readInt();
-        bottom = in.readInt();
+        name = in.readString();
+        age = in.readInt();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     @Override
     public String toString() {
-        return "Rect{" +
-                "left=" + left +
-                ", top=" + top +
-                ", right=" + right +
-                ", bottom=" + bottom +
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
                 '}';
     }
 }

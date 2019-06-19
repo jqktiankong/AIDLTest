@@ -11,5 +11,6 @@ interface IUserInterface {
     void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat,
             double aDouble, String aString);
 
-    User getUser();
+    void addUser(in User user);
+    List<User> getUsers();
 }

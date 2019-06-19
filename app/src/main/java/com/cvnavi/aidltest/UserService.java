@@ -7,11 +7,18 @@ import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserService extends Service {
+    private int i = 0;
+    private List<User> users;
+
     @Override
     public void onCreate() {
         Log.d("jiqingke", "创建服务");
         super.onCreate();
+        users = new ArrayList<User>();
     }
 
     @Nullable
@@ -27,9 +34,15 @@ public class UserService extends Service {
         }
 
         @Override
-        public User getUser() throws RemoteException {
-            User user = new User(1, 2, 3, 4);
-            return user;
+        public void addUser(User user) throws RemoteException {
+            if (user != null) {
+                users.add(user);
+            }
+        }
+
+        @Override
+        public List<User> getUsers() throws RemoteException {
+            return users;
         }
     };
 }

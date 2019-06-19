@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: D:\\Android\\github\\AIDLTest\\app\\src\\main\\aidl\\com\\cvnavi\\aidltest\\IUserInterface.aidl
+ * Original file: D:\\Android\\project\\AIDLTest\\app\\src\\main\\aidl\\com\\cvnavi\\aidltest\\IUserInterface.aidl
  */
 package com.cvnavi.aidltest;
 // Declare any non-default types here with import statements
@@ -64,18 +64,26 @@ this.basicTypes(_arg0, _arg1, _arg2, _arg3, _arg4, _arg5);
 reply.writeNoException();
 return true;
 }
-case TRANSACTION_getUser:
+case TRANSACTION_addUser:
 {
 data.enforceInterface(descriptor);
-User _result = this.getUser();
-reply.writeNoException();
-if ((_result!=null)) {
-reply.writeInt(1);
-_result.writeToParcel(reply, android.os.Parcelable.PARCELABLE_WRITE_RETURN_VALUE);
+User _arg0;
+if ((0!=data.readInt())) {
+_arg0 = User.CREATOR.createFromParcel(data);
 }
 else {
-reply.writeInt(0);
+_arg0 = null;
 }
+this.addUser(_arg0);
+reply.writeNoException();
+return true;
+}
+case TRANSACTION_getUsers:
+{
+data.enforceInterface(descriptor);
+java.util.List<User> _result = this.getUsers();
+reply.writeNoException();
+reply.writeTypedList(_result);
 return true;
 }
 default:
@@ -123,21 +131,37 @@ _reply.recycle();
 _data.recycle();
 }
 }
-@Override public User getUser() throws android.os.RemoteException
+@Override public void addUser(User user) throws android.os.RemoteException
 {
 android.os.Parcel _data = android.os.Parcel.obtain();
 android.os.Parcel _reply = android.os.Parcel.obtain();
-User _result;
 try {
 _data.writeInterfaceToken(DESCRIPTOR);
-mRemote.transact(Stub.TRANSACTION_getUser, _data, _reply, 0);
-_reply.readException();
-if ((0!=_reply.readInt())) {
-_result = User.CREATOR.createFromParcel(_reply);
+if ((user!=null)) {
+_data.writeInt(1);
+user.writeToParcel(_data, 0);
 }
 else {
-_result = null;
+_data.writeInt(0);
 }
+mRemote.transact(Stub.TRANSACTION_addUser, _data, _reply, 0);
+_reply.readException();
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+}
+@Override public java.util.List<User> getUsers() throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+java.util.List<User> _result;
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+mRemote.transact(Stub.TRANSACTION_getUsers, _data, _reply, 0);
+_reply.readException();
+_result = _reply.createTypedArrayList(User.CREATOR);
 }
 finally {
 _reply.recycle();
@@ -147,12 +171,14 @@ return _result;
 }
 }
 static final int TRANSACTION_basicTypes = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
-static final int TRANSACTION_getUser = (android.os.IBinder.FIRST_CALL_TRANSACTION + 1);
+static final int TRANSACTION_addUser = (android.os.IBinder.FIRST_CALL_TRANSACTION + 1);
+static final int TRANSACTION_getUsers = (android.os.IBinder.FIRST_CALL_TRANSACTION + 2);
 }
 /**
      * Demonstrates some basic types that you can use as parameters
      * and return values in AIDL.
      */
 public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws android.os.RemoteException;
-public User getUser() throws android.os.RemoteException;
+public void addUser(User user) throws android.os.RemoteException;
+public java.util.List<User> getUsers() throws android.os.RemoteException;
 }
