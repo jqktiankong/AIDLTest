@@ -1,5 +1,6 @@
 package com.cvnavi.aidltest;
 
+import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -33,9 +34,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         get.setOnClickListener(this);
 
 
-        intent = new Intent();
-        intent.setClass(this, UserService.class);
-        bindService(intent, mConnection, BIND_AUTO_CREATE);
+//        intent = new Intent();
+//        intent.setClass(this, UserService.class);
+//        bindService(intent, mConnection, BIND_AUTO_CREATE);
+
+        Intent intent = new Intent();
+        intent.setAction("com.cvnavi.aidltest.userservice");
+        intent.setPackage("com.cvnavi.aidltest");
+//        Intent eintent = new Intent(createExplicitFromImplicitIntent(this,intent));
+        bindService(intent, mConnection, Service.BIND_AUTO_CREATE);
 
         startService(intent);
     }

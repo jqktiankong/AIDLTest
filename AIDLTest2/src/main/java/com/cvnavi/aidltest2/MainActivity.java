@@ -40,8 +40,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         Intent intent = new Intent();
         intent.setAction("com.cvnavi.aidltest.userservice");
-        Intent eintent = new Intent(createExplicitFromImplicitIntent(this,intent));
-        bindService(eintent, mConnection, Service.BIND_AUTO_CREATE);
+        intent.setPackage("com.cvnavi.aidltest");
+//        Intent eintent = new Intent(createExplicitFromImplicitIntent(this,intent));
+        bindService(intent, mConnection, Service.BIND_AUTO_CREATE);
     }
 
     @Override
