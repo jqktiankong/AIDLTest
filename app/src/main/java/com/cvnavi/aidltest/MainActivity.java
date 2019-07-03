@@ -42,8 +42,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         intent.setAction("com.cvnavi.aidltest.userservice");
         intent.setPackage("com.cvnavi.aidltest");
 //        Intent eintent = new Intent(createExplicitFromImplicitIntent(this,intent));
+        // bindService是为了本应用调用
         bindService(intent, mConnection, Service.BIND_AUTO_CREATE);
-
+        // startService是为了让另一个进程调用
         startService(intent);
     }
 
